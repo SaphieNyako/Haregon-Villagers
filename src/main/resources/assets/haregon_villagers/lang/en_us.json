@@ -1,13 +1,3 @@
 {
-  "itemGroup.haregon_villagers": "Example Mod Tab",
-  "block.haregon_villagers.example_block": "Example Block",
-  "item.haregon_villagers.example_item": "Example Item",
-
-  "haregon_villagers.configuration.title": "Haregon Villagers Configs",
-  "haregon_villagers.configuration.section.haregon_villagers.common.toml": "Haregon Villagers Configs",
-  "haregon_villagers.configuration.section.haregon_villagers.common.toml.title": "Haregon Villagers Configs",
-  "haregon_villagers.configuration.items": "Item List",
-  "haregon_villagers.configuration.logDirtBlock": "Log Dirt Block",
-  "haregon_villagers.configuration.magicNumberIntroduction": "Magic Number Text",
-  "haregon_villagers.configuration.magicNumber": "Magic Number"
+  "creative_tab.haregon_villagers_creative_tab": "Haregon Villagers Creative Tab"
 }
