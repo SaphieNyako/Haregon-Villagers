@@ -2,6 +2,7 @@ package com.saphienyako.haregon_villagers.entity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.saphienyako.haregon_villagers.HaregonVillagers;
+import com.saphienyako.haregon_villagers.entity.layer.HaregonProfessionLayer;
 import com.saphienyako.haregon_villagers.entity.model.HaregonModel;
 import net.minecraft.client.model.VillagerModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -28,7 +29,7 @@ public class HaregonRenderer extends MobRenderer<Villager, HaregonModel<Villager
     public HaregonRenderer(EntityRendererProvider.Context context) {
         super(context, new HaregonModel<>(context.bakeLayer(HaregonModel.HAREGON_LAYER)), 0.5F);
         this.addLayer(new CustomHeadLayer(this, context.getModelSet(), context.getItemInHandRenderer()));
-        this.addLayer(new VillagerProfessionLayer(this, context.getResourceManager(), "villager"));
+        this.addLayer(new HaregonProfessionLayer(this, context.getResourceManager(), "villager"));
         this.addLayer(new CrossedArmsItemLayer(this, context.getItemInHandRenderer()));
     }
 

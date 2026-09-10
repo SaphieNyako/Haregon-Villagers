@@ -1,6 +1,7 @@
 package com.saphienyako.haregon_villagers.entity.renderer;
 
 import com.saphienyako.haregon_villagers.HaregonVillagers;
+import com.saphienyako.haregon_villagers.entity.layer.HaregonProfessionLayer;
 import com.saphienyako.haregon_villagers.entity.model.ZombieHaregonModel;
 import net.minecraft.client.model.ZombieVillagerModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -17,7 +18,7 @@ public class ZombieHaregonRenderer extends HumanoidMobRenderer<ZombieVillager, Z
     public ZombieHaregonRenderer(EntityRendererProvider.Context contex) {
         super(contex, new ZombieHaregonModel<>(contex.bakeLayer(ZombieHaregonModel.ZOMBIE_HAREGON_LAYER)), 0.5F);
         this.addLayer(new HumanoidArmorLayer(this, new ZombieVillagerModel(contex.bakeLayer(ModelLayers.ZOMBIE_VILLAGER_INNER_ARMOR)), new ZombieVillagerModel(contex.bakeLayer(ModelLayers.ZOMBIE_VILLAGER_OUTER_ARMOR)), contex.getModelManager()));
-        this.addLayer(new VillagerProfessionLayer(this, contex.getResourceManager(), "zombie_villager"));
+        this.addLayer(new HaregonProfessionLayer<>(this, contex.getResourceManager(), "villager"));
     }
 
     public ResourceLocation getTextureLocation(ZombieVillager entity) {
