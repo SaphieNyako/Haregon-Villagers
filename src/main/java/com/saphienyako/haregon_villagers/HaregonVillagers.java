@@ -46,7 +46,7 @@ public class HaregonVillagers {
         ModCreativeModeTab.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
 
     }
 

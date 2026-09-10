@@ -27,19 +27,13 @@ public class HaregonVillagersClient {
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-
-        if(Config.HAREGON_VILLAGERS.get()) {
             event.registerLayerDefinition(HaregonModel.HAREGON_LAYER, HaregonModel::createBodyLayer);
             event.registerLayerDefinition(ZombieHaregonModel.ZOMBIE_HAREGON_LAYER, ZombieHaregonModel::createBodyLayer);
-        }
     }
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-
-        if(Config.HAREGON_VILLAGERS.get()) {
             event.registerEntityRenderer(EntityType.VILLAGER, HaregonRenderer::new);
             event.registerEntityRenderer(EntityType.ZOMBIE_VILLAGER, ZombieHaregonRenderer::new);
-        }
     }
 }
