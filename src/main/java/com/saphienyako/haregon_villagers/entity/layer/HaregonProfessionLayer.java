@@ -23,6 +23,7 @@ import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.npc.VillagerDataHolder;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerType;
+import net.neoforged.fml.ModList;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -78,7 +79,22 @@ public class HaregonProfessionLayer<T extends LivingEntity & VillagerDataHolder,
     }
 
     private ResourceLocation getResourceLocation(String folder, ResourceLocation location) {
-        return ResourceLocation.fromNamespaceAndPath(HaregonVillagers.MOD_ID, "textures/entity/" + this.path + "/" + folder + "/" + location.getPath() + ".png");
+
+        boolean isChefsDelightProfession = ModList.get().isLoaded("chefsdelight") && folder.equals("profession")  && (location.getPath().equals("cook") || location.getPath().equals("chef"));
+        boolean isVillagersPlusProfession = ModList.get().isLoaded("villagersplus") && folder.equals("profession") && location.getNamespace().equals("villagersplus");
+        boolean isCreateBetterVillagersProfession = ModList.get().isLoaded("create_better_villagers") && folder.equals("profession") && location.getNamespace().equals("create_better_villagers");
+        boolean isBeekeeperHutProfession = ModList.get().isLoaded("beekeeperhut") && folder.equals("profession") && location.getPath().equals("beekeeper");
+        boolean isSawmillProfession = ModList.get().isLoaded("sawmill") && folder.equals("profession") && location.getPath().equals("carpenter");
+        boolean isMoreVillagersProfession = ModList.get().isLoaded("morevillagers") && folder.equals("profession") && location.getNamespace().equals("morevillagers");
+        boolean isMushroomVillagerProfession = ModList.get().isLoaded("mushroom_villager_trader") && folder.equals("profession") && location.getNamespace().equals("mushroom_villager_trader");
+
+        if(isChefsDelightProfession || isVillagersPlusProfession || isCreateBetterVillagersProfession || isBeekeeperHutProfession || isSawmillProfession || isMoreVillagersProfession || isMushroomVillagerProfession){
+            return location.withPath((path) -> {
+                return "textures/entity/" + this.path + "/" + folder + "/" + path + ".png";
+            });
+        } else {
+            return ResourceLocation.fromNamespaceAndPath(HaregonVillagers.MOD_ID, "textures/entity/" + this.path + "/" + folder + "/" + location.getPath() + ".png");
+        }
     }
 
     private ResourceLocation getProfessionLevelLocation(ResourceLocation location) {
