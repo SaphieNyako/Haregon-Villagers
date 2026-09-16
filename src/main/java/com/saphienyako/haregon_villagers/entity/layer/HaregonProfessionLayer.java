@@ -61,9 +61,18 @@ public class HaregonProfessionLayer<T extends LivingEntity & VillagerDataHolder,
             VillagerMetaDataSection.Hat villagermetadatasection$hat1 = this.getHatData(this.professionHatCache, "profession", BuiltInRegistries.VILLAGER_PROFESSION, villagerProfession);
             M model = this.getParentModel();
 
-            ((VillagerHeadModel)model).hatVisible(villagermetadatasection$hat1 == VillagerMetaDataSection.Hat.NONE || villagermetadatasection$hat1 == VillagerMetaDataSection.Hat.PARTIAL && villagermetadatasection$hat != VillagerMetaDataSection.Hat.FULL);
-            ResourceLocation resourcelocation = this.getResourceLocation("type", BuiltInRegistries.VILLAGER_TYPE.getKey(villagerType));
-            renderColoredCutoutModel(model, resourcelocation, poseStack, buffer, packedLight, livingEntity, -1);
+            ResourceLocation villagerTypeLocation = BuiltInRegistries.VILLAGER_TYPE.getKey(villagerType);
+            boolean isWindsweptType = ModList.get().isLoaded("windswept") && villagerTypeLocation.getNamespace().equals("windswept");
+            boolean isMushroomVillagerType = ModList.get().isLoaded("mushroom_villager_trader") && villagerTypeLocation.getNamespace().equals("mushroom_villager_trader");
+
+            if (isWindsweptType || isMushroomVillagerType) {
+                model.hatVisible(false);
+            } else {
+                model.hatVisible(villagermetadatasection$hat1 == VillagerMetaDataSection.Hat.NONE || villagermetadatasection$hat1 == VillagerMetaDataSection.Hat.PARTIAL && villagermetadatasection$hat != VillagerMetaDataSection.Hat.FULL);
+            }
+
+            ResourceLocation typeTexture = this.getResourceLocation("type", villagerTypeLocation);
+            renderColoredCutoutModel(model, typeTexture, poseStack, buffer, packedLight, livingEntity, -1);
             model.hatVisible(true);
 
             if (villagerProfession != VillagerProfession.NONE && !livingEntity.isBaby()) {
@@ -87,6 +96,7 @@ public class HaregonProfessionLayer<T extends LivingEntity & VillagerDataHolder,
         boolean isSawmillProfession = ModList.get().isLoaded("sawmill") && folder.equals("profession") && location.getPath().equals("carpenter");
         boolean isMoreVillagersProfession = ModList.get().isLoaded("morevillagers") && folder.equals("profession") && location.getNamespace().equals("morevillagers");
         boolean isMushroomVillagerProfession = ModList.get().isLoaded("mushroom_villager_trader") && folder.equals("profession") && location.getNamespace().equals("mushroom_villager_trader");
+       // boolean isWindsweptType = ModList.get().isLoaded("windswept") && folder.equals("type") && location.getNamespace().equals("windswept");
 
         if(isChefsDelightProfession || isVillagersPlusProfession || isCreateBetterVillagersProfession || isBeekeeperHutProfession || isSawmillProfession || isMoreVillagersProfession || isMushroomVillagerProfession){
             return location.withPath((path) -> {

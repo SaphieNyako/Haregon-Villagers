@@ -3,6 +3,7 @@ package com.saphienyako.haregon_villagers;
 import com.saphienyako.haregon_villagers.entity.model.HaregonModel;
 import com.saphienyako.haregon_villagers.entity.model.ZombieHaregonModel;
 import com.saphienyako.haregon_villagers.entity.renderer.HaregonRenderer;
+import com.saphienyako.haregon_villagers.entity.renderer.WanderingHaregonTraderRenderer;
 import com.saphienyako.haregon_villagers.entity.renderer.ZombieHaregonRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EntityType;
@@ -35,5 +36,6 @@ public class HaregonVillagersClient {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(EntityType.VILLAGER, HaregonRenderer::new);
             event.registerEntityRenderer(EntityType.ZOMBIE_VILLAGER, ZombieHaregonRenderer::new);
+            event.registerEntityRenderer(EntityType.WANDERING_TRADER, WanderingHaregonTraderRenderer::new);
     }
 }
